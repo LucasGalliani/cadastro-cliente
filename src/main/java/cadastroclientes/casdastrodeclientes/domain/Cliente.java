@@ -19,7 +19,6 @@ public class Cliente {
     private String email;
     private String telefone;
     private String cpf;
-    private String cnpj;
     //private Endereco endereco;
 
 }
