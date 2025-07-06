@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 public class ClientesController {
 
     @Autowired
-    private ClientesRepository clientesRepository;
+    private ClientesRepository repository;
 
     @Autowired
     private ClientesService clientesService;
