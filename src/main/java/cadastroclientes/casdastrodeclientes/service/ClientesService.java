@@ -15,14 +15,14 @@ public class ClientesService {
     private ClientesRepository clientesRepository;
 
     @Autowired
-    private ClienteMapper mapper;
+    private ClienteMapper mapperService;
 
 
     public ResponseEntity<ClienteDTO> cadastrar(ClienteDTO dto){
 
-        Cliente cliente = mapper.converteDtoParaEntidade(dto);
+        Cliente cliente = mapperService.converteDtoParaEntidade(dto);
         var save = clientesRepository.save(cliente);
-        var clienteDto = mapper.converteEntidadeParaDto(save);
+        var clienteDto = mapperService.converteEntidadeParaDto(save);
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteDto);
 
     }
