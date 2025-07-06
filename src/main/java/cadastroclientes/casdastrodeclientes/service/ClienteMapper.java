@@ -13,13 +13,14 @@ public class ClienteMapper {
         cliente.setNome(dto.nome());
         cliente.setEmail(dto.email());
         cliente.setTelefone(dto.telefone());
+        cliente.setCpf(dto.cpf());
 
         return cliente;
     }
 
     public ClienteDTO converteEntidadeParaDto(Cliente entidade){
 
-        ClienteDTO clienteDTO = new ClienteDTO(entidade.getNome(), entidade.getEmail(), entidade.getTelefone());
+        ClienteDTO clienteDTO = new ClienteDTO(entidade.getNome(), entidade.getEmail(), entidade.getTelefone(),entidade.getCpf());
         return clienteDTO;
     }
 
