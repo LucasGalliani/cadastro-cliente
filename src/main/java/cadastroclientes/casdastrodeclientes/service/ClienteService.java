@@ -43,11 +43,6 @@ public class ClienteService {
 
         boolean existeCampos = clientesRepository.existsByNomeOrEmailOrCpf(dto.nome(), dto.email(), dto.cpf());
 
-        System.out.println("nome: " + dto.nome());
-        System.out.println("email: " + dto.email());
-        System.out.println("cpf: " + dto.cpf());
-        System.out.println("Chego aqui: " + existeCampos);
-
         if (existeCampos) {
             throw new ClienteDuplicatedException("Já existe um cliente com CPF, nome ou e-mail informado.");
         }
