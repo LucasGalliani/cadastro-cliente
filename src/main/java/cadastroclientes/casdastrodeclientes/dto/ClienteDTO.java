@@ -15,7 +15,8 @@ public record ClienteDTO(
         String telefone,
         @NotNull
         @Pattern(regexp = "\\d{11}", message = "CPF deve conter exatamente 11 dígitos numéricos")
-        String cpf) {
+        String cpf,
+        Boolean ativo) {
 
 
 }

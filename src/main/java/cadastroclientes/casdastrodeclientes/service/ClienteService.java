@@ -26,7 +26,7 @@ public class ClienteService {
 
     public ResponseEntity<List<ClienteDTO>> consultarCadastro() {
 
-        List<Cliente> cliente = clientesRepository.findAll();
+        List<Cliente> cliente = clientesRepository.findAllByAtivoTrue();
 
         if (cliente.isEmpty()) {
             throw new ClienteNoDataFoundException("Nenhum cliente encontrado.");
@@ -87,11 +87,26 @@ public class ClienteService {
             cliente.setTelefone(clienteDTO.telefone());
         }
 
+        if (clienteDTO.ativo() != null) {
+            cliente.setAtivo(clienteDTO.ativo());
+        }
+
         Cliente clienteSave = clientesRepository.save(cliente);
         ClienteDTO clienteAtualizado = mapperService.converteEntidadeParaDto(clienteSave);
 
         return ResponseEntity.ok(clienteAtualizado);
 
+    }
+
+    public ResponseEntity<ClienteDTO> deletarCadastroCliente(String cpf){
+
+        Cliente cliente = clientesRepository.findByCpf(cpf)
+                .orElseThrow(() -> new ClienteNoDataFoundException("Nenhum cliente encontrado."));
+
+         cliente.setAtivo(false);
+         clientesRepository.save(cliente);
+
+         return  ResponseEntity.noContent().build();
     }
 
 }

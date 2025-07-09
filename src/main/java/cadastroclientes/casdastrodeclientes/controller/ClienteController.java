@@ -42,4 +42,11 @@ public class ClienteController {
         return clientesService.atualizarCadastroCliente(cpf,dto);
     }
 
+    @DeleteMapping("/{cpf}")
+    @Transactional
+    public ResponseEntity deletarClientePorCpf(@PathVariable @Valid String cpf){
+
+        return clientesService.deletarCadastroCliente(cpf);
+    }
+
 }

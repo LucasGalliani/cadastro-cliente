@@ -1,0 +1,4 @@
+ALTER TABLE clientes
+ADD COLUMN ativo BOOLEAN DEFAULT TRUE;
+
+UPDATE clientes SET ativo = TRUE WHERE ativo IS NULL;
