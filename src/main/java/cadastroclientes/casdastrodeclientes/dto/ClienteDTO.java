@@ -1,5 +1,6 @@
 package cadastroclientes.casdastrodeclientes.dto;
 
+import cadastroclientes.casdastrodeclientes.domain.Endereco;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -17,7 +18,8 @@ public record ClienteDTO(
         @Pattern(regexp = "\\d{11}", message = "CPF deve conter exatamente 11 dígitos numéricos")
         String cpf,
         @NotNull
-        Boolean ativo) {
+        Boolean ativo,
+        Endereco endereco) {
 
 
 }

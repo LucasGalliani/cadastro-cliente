@@ -1,6 +1,6 @@
 package cadastroclientes.casdastrodeclientes.domain;
 
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,13 +10,15 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-//@Entity
+@Entity
 @Table(name = "enderecos")
 public class Endereco {
 
-    private String logradouro;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String rua;
     private String numero;
-    private String complemento;
     private String bairro;
     private String cep;
     private String cidade;

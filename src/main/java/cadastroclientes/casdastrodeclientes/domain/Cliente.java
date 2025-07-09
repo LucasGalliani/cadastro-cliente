@@ -20,6 +20,8 @@ public class Cliente {
     private String telefone;
     private String cpf;
     private Boolean ativo;
-    //private Endereco endereco;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_id", referencedColumnName = "id")
+    private Endereco endereco;
 
 }
