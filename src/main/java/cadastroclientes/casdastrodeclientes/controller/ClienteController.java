@@ -31,17 +31,15 @@ public class ClienteController {
         return clientesService.cadastrarUsuario(dto);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity listarClientesPorId(@PathVariable Long id) {
-        return clientesService.consultarUsuarioPorId(id);
+    @GetMapping("/{cpf}")
+    public ResponseEntity listarClientesPorCpf(@PathVariable String cpf) {
+        return clientesService.consultarUsuarioPorCpf(cpf);
     }
 
     @PutMapping("/{cpf}")
     @Transactional
     public ResponseEntity atualizarClientesPorCpf(@PathVariable String cpf, @RequestBody ClienteDTO dto){
         return clientesService.atualizarCadastroCliente(cpf,dto);
-
     }
-
 
 }

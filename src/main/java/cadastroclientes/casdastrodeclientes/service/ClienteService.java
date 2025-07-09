@@ -5,7 +5,6 @@ import cadastroclientes.casdastrodeclientes.dto.ClienteDTO;
 import cadastroclientes.casdastrodeclientes.exception.ClienteDuplicatedException;
 import cadastroclientes.casdastrodeclientes.exception.ClienteNoDataFoundException;
 import cadastroclientes.casdastrodeclientes.repository.ClientesRepository;
-import ch.qos.logback.core.net.server.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,9 +55,9 @@ public class ClienteService {
     }
 
 
-    public ResponseEntity<List<ClienteDTO>> consultarUsuarioPorId(Long id) {
+    public ResponseEntity<List<ClienteDTO>> consultarUsuarioPorCpf(String cpf) {
 
-        Optional<Cliente> cliente = clientesRepository.findById(id);
+        Optional<Cliente> cliente = clientesRepository.findByCpf(cpf);
 
         if (cliente.isEmpty()) {
             throw new ClienteNoDataFoundException("Nenhum cliente encontrado.");
