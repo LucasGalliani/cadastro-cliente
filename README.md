@@ -22,9 +22,9 @@ A API permite:
 
 - 🔹 Cadastrar novos clientes
 - 🔹 Listar todos os clientes
-- 🔹 Buscar cliente por ID
+- 🔹 Buscar cliente por CPF
 - 🔹 Atualizar dados de um cliente
-- 🔹 Deletar cliente por ID
+- 🔹 Deletar cliente por CPF
 
 ---
 
