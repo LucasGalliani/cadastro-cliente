@@ -38,7 +38,7 @@ public class ClienteController {
 
     @PutMapping("/{cpf}")
     @Transactional
-    public ResponseEntity atualizarClientesPorCpf(@PathVariable String cpf, @RequestBody ClienteDTO dto){
+    public ResponseEntity atualizarClientesPorCpf(@RequestBody @Valid @PathVariable String cpf, @RequestBody ClienteDTO dto){
         return clientesService.atualizarCadastroCliente(cpf,dto);
     }
 
