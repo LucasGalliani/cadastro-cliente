@@ -21,13 +21,27 @@ public class ClienteController {
 
     @GetMapping
     public ResponseEntity listarClientes() {
-        return clientesService.consultar();
+        return clientesService.consultarCadastro();
     }
 
     @PostMapping
     @Transactional
-    public ResponseEntity cadastrarCliente(@RequestBody @Valid ClienteDTO dto) {
+    public ResponseEntity cadastrarClientes(@RequestBody @Valid ClienteDTO dto) {
 
-        return clientesService.cadastrar(dto);
+        return clientesService.cadastrarUsuario(dto);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity listarClientesPorId(@PathVariable Long id) {
+        return clientesService.consultarUsuarioPorId(id);
+    }
+
+    @PutMapping("/{cpf}")
+    @Transactional
+    public ResponseEntity atualizarClientesPorCpf(@PathVariable String cpf, @RequestBody ClienteDTO dto){
+        return clientesService.atualizarCadastroCliente(cpf,dto);
+
+    }
+
+
 }

@@ -5,12 +5,14 @@ import cadastroclientes.casdastrodeclientes.dto.ClienteDTO;
 import cadastroclientes.casdastrodeclientes.exception.ClienteDuplicatedException;
 import cadastroclientes.casdastrodeclientes.exception.ClienteNoDataFoundException;
 import cadastroclientes.casdastrodeclientes.repository.ClientesRepository;
+import ch.qos.logback.core.net.server.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,7 +25,7 @@ public class ClienteService {
     private ClienteMapper mapperService;
 
 
-    public ResponseEntity<List<ClienteDTO>> consultar() {
+    public ResponseEntity<List<ClienteDTO>> consultarCadastro() {
 
         List<Cliente> cliente = clientesRepository.findAll();
 
@@ -39,7 +41,7 @@ public class ClienteService {
     }
 
 
-    public ResponseEntity<ClienteDTO> cadastrar(ClienteDTO dto) {
+    public ResponseEntity<ClienteDTO> cadastrarUsuario(ClienteDTO dto) {
 
         boolean existeCampos = clientesRepository.existsByNomeOrEmailOrCpf(dto.nome(), dto.email(), dto.cpf());
 
@@ -51,6 +53,46 @@ public class ClienteService {
         var save = clientesRepository.save(cliente);
         var clienteDto = mapperService.converteEntidadeParaDto(save);
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteDto);
+    }
+
+
+    public ResponseEntity<List<ClienteDTO>> consultarUsuarioPorId(Long id) {
+
+        Optional<Cliente> cliente = clientesRepository.findById(id);
+
+        if (cliente.isEmpty()) {
+            throw new ClienteNoDataFoundException("Nenhum cliente encontrado.");
+        }
+
+        List<ClienteDTO> clienteDTO = cliente.stream()
+                .map(mapperService::converteEntidadeParaDto)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(clienteDTO);
+    }
+
+    public ResponseEntity<ClienteDTO> atualizarCadastroCliente(String cpf,ClienteDTO clienteDTO) {
+
+        Cliente cliente = clientesRepository.findByCpf(cpf)
+                .orElseThrow(() -> new ClienteNoDataFoundException("Nenhum cliente encontrado."));
+
+        if (clienteDTO.nome() != null && !clienteDTO.nome().isBlank()) {
+            cliente.setNome(clienteDTO.nome());
+        }
+
+        if (clienteDTO.email() != null && !clienteDTO.email().isBlank()) {
+            cliente.setEmail(clienteDTO.email());
+        }
+
+        if (clienteDTO.telefone() != null && !clienteDTO.telefone().isBlank()) {
+            cliente.setTelefone(clienteDTO.telefone());
+        }
+
+        Cliente clienteSave = clientesRepository.save(cliente);
+        ClienteDTO clienteAtualizado = mapperService.converteEntidadeParaDto(clienteSave);
+
+        return ResponseEntity.ok(clienteAtualizado);
+
     }
 
 }
