@@ -50,7 +50,7 @@ public class ClienteService {
 
         Cliente cliente = mapperService.converteDtoParaEntidade(dto);
         var save = clientesRepository.save(cliente);
-        var clienteDto = mapperService.converteEntidadeParaDto(save);
+        var clienteDto = mapperService.converteEntidadeParaDto(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteDto);
     }
 
@@ -104,7 +104,7 @@ public class ClienteService {
                 .orElseThrow(() -> new ClienteNoDataFoundException("Nenhum cliente encontrado."));
 
          cliente.setAtivo(false);
-         clientesRepository.save(cliente);
+//         clientesRepository.save(cliente);
 
          return  ResponseEntity.noContent().build();
     }
