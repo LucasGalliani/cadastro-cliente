@@ -1,6 +1,9 @@
 📋 Cadastro de Clientes - API REST
 Projeto de uma API REST para gerenciamento de clientes, desenvolvido com Java, Spring Boot e PostgreSQL.
 
+
+
+
 🚀 Tecnologias utilizadas
 ✅ Java 17+
 
@@ -20,6 +23,8 @@ Projeto de uma API REST para gerenciamento de clientes, desenvolvido com Java, S
 
 ✅ Lombok (opcional)
 
+
+
 🧠 Funcionalidades
 A API permite:
 
@@ -32,6 +37,7 @@ A API permite:
 🔹 Atualizar dados de um cliente
 
 🔹 Deletar cliente por CPF
+
 
 
 🔒 Autenticar usuários e proteger endpoints com JWT
@@ -49,6 +55,7 @@ Funcionalidades de segurança:
 ✅ Roles de usuário para controle de acesso (USER, ADMIN)
 
 ✅ Senhas criptografadas com BCrypt
+
 
 
 🛠️ Como executar o projeto
