@@ -15,7 +15,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(EntityNotFoundException.class)
     private ResponseEntity<String> handleClienteNoDataFoundException() {
 
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente nao encontrado!");
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Cliente não encontrado!");
 
     }
 
