@@ -49,7 +49,7 @@ public class ClienteService {
         }
 
         Cliente cliente = mapperService.converteDtoParaEntidade(dto);
-        var save = clientesRepository.save(cliente);
+//        var save = clientesRepository.save(cliente);
         var clienteDto = mapperService.converteEntidadeParaDto(cliente);
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteDto);
     }
@@ -91,8 +91,8 @@ public class ClienteService {
             cliente.setAtivo(clienteDTO.ativo());
         }
 
-        Cliente clienteSave = clientesRepository.save(cliente);
-        ClienteDTO clienteAtualizado = mapperService.converteEntidadeParaDto(clienteSave);
+//        Cliente clienteSave = clientesRepository.save(cliente);
+        ClienteDTO clienteAtualizado = mapperService.converteEntidadeParaDto(cliente);
 
         return ResponseEntity.ok(clienteAtualizado);
 
