@@ -43,6 +43,7 @@ public class AutenticacaoController {
         String senha = new BCryptPasswordEncoder().encode(dto.senha());
         Usuario novoUsuario = new Usuario(dto.login(),senha, dto.role().getRole());
 
+        return null;
     }
 
 }
