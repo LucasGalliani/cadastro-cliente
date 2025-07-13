@@ -27,6 +27,12 @@ public class Usuario implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UsuarioRole role;
 
+    public Usuario(String login, String senha, UsuarioRole role) {
+        this.login = login;
+        this.senha = senha;
+        this.role = role;
+    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
